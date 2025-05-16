@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 public class EstudoController implements Initializable {
@@ -31,6 +32,7 @@ public class EstudoController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        Random random = new Random();
         progressLabel.setLabelFor(progressBar);
         ProgressBarService p = new ProgressBarService(progressBar, progressLabel);
         p.setMaxValue(100);
@@ -48,11 +50,11 @@ public class EstudoController implements Initializable {
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long l) {
-                if(p.getCurrentValue() <= 100) {
-                    p.increment(10);
+                if(p.getCurrentValue() <= p.getMaxValue()) {
+                    p.setCurrentValue(p.getCurrentValue() + 1);
                 } else {
-                    p.setText("Teste");
-                    p.setCurrentValue(0);
+                    p.reset();
+                    p.setText(mensagens.get(random.nextInt(mensagens.size())));
                 }
             }
         };

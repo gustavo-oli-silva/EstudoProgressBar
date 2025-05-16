@@ -149,7 +149,8 @@ public class ProgressBarService {
     }
 
     public void reset() {
-        this.property.set(0);
+        this.currentValue = 0;
+        this.property.set(currentValue);
         this.label.setText("");
     }
 }
