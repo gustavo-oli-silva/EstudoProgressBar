@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.estudoprogressbar.controllers.TesteController"
+            prefHeight="1280" prefWidth="720">
+
+    <Button fx:id="turnBackButton" onAction="#previousScreen">Avançar</Button>
+
+</AnchorPane>
