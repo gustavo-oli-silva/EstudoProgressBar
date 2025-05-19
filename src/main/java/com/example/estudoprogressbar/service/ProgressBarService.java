@@ -5,6 +5,9 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 
+/**
+ * Essa classe é uma abstração para facilitar o uso sinérgico da ProgressBar com uma Label
+ */
 public class ProgressBarService {
     private final Label label;
     private final ProgressBar progressBar;
@@ -123,12 +126,6 @@ public class ProgressBarService {
      * @param increment
      */
     public void increment(double increment) {
-        if ((currentValue + increment) >= maxValue) {
-            this.currentValue = maxValue;
-            this.property.set(1.0);
-            return;
-        }
-
         this.currentValue = currentValue + increment;
 
         this.property.set(this.currentValue / maxValue);
@@ -148,9 +145,23 @@ public class ProgressBarService {
         this.runnable = runnable;
     }
 
+    /**
+     * Esse método reinicia o status da barra para zero, e elimina o texto da label
+     * mas ainda permanece o valor total
+     */
     public void reset() {
         this.currentValue = 0;
         this.property.set(currentValue);
         this.label.setText("");
+    }
+
+    /**
+     * Esse método reseta o service para o seu estado de inicio, como se tivesse sido acabado de
+     * ser instanciado
+     */
+    public void factoryReset() {
+        this.reset();
+        this.maxValue = 1;
+        this.runnable = null;
     }
 }

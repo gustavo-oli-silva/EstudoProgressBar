@@ -51,9 +51,10 @@ public class EstudoController implements Initializable {
             @Override
             public void handle(long l) {
                 if(p.getCurrentValue() <= p.getMaxValue()) {
-                    p.setCurrentValue(p.getCurrentValue() + 1);
+                    p.increment(1);
                 } else {
                     p.reset();
+                    p.factoryReset();
                     p.setText(mensagens.get(random.nextInt(mensagens.size())));
                 }
             }
